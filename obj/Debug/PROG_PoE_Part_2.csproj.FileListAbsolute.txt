@@ -1,0 +1,8 @@
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\prog6221-part-2-nikkigordhan\obj\Debug\PROG_PoE_Part_2.csproj.AssemblyReference.cache
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\prog6221-part-2-nikkigordhan\obj\Debug\PROG_PoE_Part_2.csproj.SuggestedBindingRedirects.cache
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\prog6221-part-2-nikkigordhan\obj\Debug\PROG_PoE_Part_2.csproj.CoreCompileInputs.cache
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\prog6221-part-2-nikkigordhan\bin\Debug\PROG_PoE_Part_1.exe.config
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\prog6221-part-2-nikkigordhan\bin\Debug\PROG_PoE_Part_1.exe
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\prog6221-part-2-nikkigordhan\bin\Debug\PROG_PoE_Part_1.pdb
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\prog6221-part-2-nikkigordhan\obj\Debug\PROG_PoE_Part_1.exe
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\prog6221-part-2-nikkigordhan\obj\Debug\PROG_PoE_Part_1.pdb

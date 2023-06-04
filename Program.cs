@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
 using System.Globalization;
+using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 //new comment to test commit
 
 namespace PROG_PoE
@@ -54,23 +56,14 @@ namespace PROG_PoE
 
     class Recipe
     {
-        // public List<Ingredient> ingredients = new List<Ingredient>();
-        //public List<Ingredient> ingredients
-        //{
-        //    get
-        //    {
-        //        return ingredients;
-        //    }
-        //    set
-        //    {
-        //        ingredients = value;
-        //    }
-        //}
-        // the format of the getter and setter was adapted from <Daniweb>
-        // https://www.daniweb.com/programming/software-development/threads/419430/how-do-you-get-set-a-list
-        // Falcon25
-
-
+        public string Name_of_Recipe;
+        //creates a variable called Name_of_Recipe of type string.
+        public string sName_of_Recipe
+        {
+            get { return Name_of_Recipe; }
+            set { Name_of_Recipe = value;}
+        }
+        //getters and setters using automatic properties.
 
         public Ingredient[] ingredients;
         //creates a variable called ingredients of type Ingredient array.
@@ -80,19 +73,6 @@ namespace PROG_PoE
             set { ingredients = value; }
         }
         //getters and setters using automatic properties.
-
-
-        //public List<string> sSteps
-        //{
-        //    get
-        //    {
-        //        return sSteps;
-        //    }
-        //    set
-        //    {
-        //        sSteps = value;
-        //    }
-        //}
 
         public string[] sSteps;
         //creates a variable called sSteps of type string array.
@@ -125,9 +105,9 @@ namespace PROG_PoE
         public void Create_A_Recipe()
         {
             Console.WriteLine("Enter the recipe name: ");
-            string Name_of_Recipe= Console.ReadLine();
+            string sRecipeName = Console.ReadLine();
           // asks the user to enter the name of the recipe.
-
+            Name_of_Recipe = sRecipeName;
             ingredients = Enter_Ingredients();
             //gets the values from Enter_Ingredients() and assigns it to the variable ingredients.
 
@@ -136,7 +116,6 @@ namespace PROG_PoE
                 sSteps = Enter_Steps();
                 //gets the steps from Enter_Steps() and assigns it to the variable steps.
             }
-
         }
         //creates a new recipe.
 
@@ -220,6 +199,24 @@ namespace PROG_PoE
         }
         //enters the ingredients
 
+        public void Display_Selected_Recipe()
+        {
+            var SortedList = lRecipe.OrderBy(r => r.Name_of_Recipe).ToList();
+            // the format of List.OrderBy() is adapted from StackOverFlow
+            // https://stackoverflow.com/questions/3309188/how-to-sort-a-listt-by-a-property-in-the-object
+            // Lazarus
+            // https://stackoverflow.com/users/19540/lazarus
+            // orders the recipe names alphabetically.
+            int iNumberRecipes = lRecipe.Count;
+
+            for (int i = 0; i < iNumberRecipes; i++)
+            {
+
+                Console.WriteLine("Recipe " + i + lRecipe[i].Name_of_Recipe);
+            }
+        }
+       
+
         public void Display_Recipe()
         {
             Console.ForegroundColor = ConsoleColor.DarkCyan;
@@ -253,22 +250,22 @@ namespace PROG_PoE
             {
                 case "TABLESPOON":
                     {
-                        if (scaled%8 == 0 )
+                        if (scaled % 8 == 0)
                         {
                             ingredients[iLoopCounter].dIngredient_quantity = scaled / 8;
                             // assign the ingredient.value to the divied (whole no) no.
 
-                            ingredients[iLoopCounter].Ingredient_Unit = "CUPS"; 
+                            ingredients[iLoopCounter].Ingredient_Unit = "CUPS";
                             // change ingreindets measurement to cups.
                         }
                         else
                         {
-                            ingredients[iLoopCounter].dIngredient_quantity  = scaled;
+                            ingredients[iLoopCounter].dIngredient_quantity = scaled;
                         }
-                        
+
                         break;
                     }
-                   default:
+                default:
                     {
                         ingredients[iLoopCounter].dIngredient_quantity = scaled;
                         break;
@@ -286,27 +283,24 @@ namespace PROG_PoE
                     case "CUPS":
                         {
 
-                                ingredients[iLoopCounter].dIngredient_quantity = scaled * 8;
-                                // assign the ingredient.value to the divied (whole no) no.
+                            ingredients[iLoopCounter].dIngredient_quantity = scaled * 8;
+                            // assign the ingredient.value to the divied (whole no) no.
 
-                                ingredients[iLoopCounter].Ingredient_Unit = "TABLESPOON";
+                            ingredients[iLoopCounter].Ingredient_Unit = "TABLESPOON";
                             // change ingreindets measurement to cups.
                             bScaled = false;
 
                             break;
                         }
-                        default:
+                    default:
                         {
                             ingredients[iLoopCounter].dIngredient_quantity = scaled;
                             bScaled = false;
                             break;
                         }
-
-
                 }
             }
         }
-
 
         public void Scale_Recipe()
         {
@@ -320,7 +314,7 @@ namespace PROG_PoE
                 scaled = ingredient.Ingredient_Quantity * factor;
                 String sMeasurement = ingredient.sIngredient_unit;
 
-                Conversion_Scaled( iLoopCounter ,scaled );
+                //Conversion_Scaled( iLoopCounter ,scaled );
 
             }
             //gets the ingredient quantity and times it by the factor to get the scaled value.
@@ -337,7 +331,7 @@ namespace PROG_PoE
                 double scaled = ingredients.Ingredient_Quantity / factor;
                 String sMeasurement = ingredients.sIngredient_unit;
 
-                Conversion_Reset(iLoopCounter, scaled);
+               // Conversion_Reset(iLoopCounter, scaled);
 
 
                 Console.WriteLine("Quantities are reset to orginal quantity.The orginal quantity is " + ingredients.Ingredient_Quantity);
@@ -345,7 +339,6 @@ namespace PROG_PoE
             //gets the scaled quantity and divides it by the factor to get the orginal quantity.
         }
         //allows the user to reset the quantites back to the orginal quantity.
-
     }
     //gets the recipe ingredients and steps.
 
@@ -355,17 +348,23 @@ namespace PROG_PoE
         {
             try
             {
-                Recipe orecipe = new Recipe();
-                //creates an object orecipe of type Recipe.
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
                 //changes the colour of the font.
                 Console.Title = "eCookBook";
                 Console.WriteLine("Welcome to your very own eCook-Book. Where you can create any one of your favourite recipes.");
-               
 
+                List<Recipe> lRecipe = new List<Recipe>();
+              // creates a list of type Recipe 
+                    // the format of a list is adapted from C# Corner
+                    // https://www.c-sharpcorner.com/article/c-sharp-list/
+                    // Mahesh Chand
+                    // https://www.c-sharpcorner.com/members/mahesh-chand
 
                 while (true)
                 {
+                    Recipe oSelectedRecipe = new Recipe();
+                    //creates an object oSelectedRecipe of type Recipe.
+
                     Console.ForegroundColor = ConsoleColor.White;
                     //https://www.tutorialspoint.com/how-to-change-the-foreground-color-of-text-in-chash-console#:~:text=To%20change%20the%20Foreground%20Color%20of%20text%2C%20use%20the%20Console,ForegroundColor%20property%20in%20C%23.
                     //AmitDiwan
@@ -373,11 +372,12 @@ namespace PROG_PoE
 
                     Console.WriteLine("Choose an option for what you want to do.");
                     Console.WriteLine("(1) Create a new recipe");
-                    Console.WriteLine("(2) Display the recipe");
-                    Console.WriteLine("(3) Scale the recipe");
-                    Console.WriteLine("(4) Reset the ingredient quantity to its orginal value");
-                    Console.WriteLine("(5) Clear the recipe");
-                    Console.WriteLine("(6) Quit");
+                    Console.WriteLine("(2) Search for a certain recipe to display");
+                    Console.WriteLine("(3) Display all the recipe names");
+                    Console.WriteLine("(4) Scale the recipe");
+                    Console.WriteLine("(5) Reset the ingredient quantity to its orginal value");
+                    Console.WriteLine("(6) Clear the recipe");
+                    Console.WriteLine("(7) Quit");
 
                     string choiceString = Console.ReadLine();
                     //gives the user options to choose from.
@@ -385,7 +385,7 @@ namespace PROG_PoE
                     if (!int.TryParse(choiceString, out int choice))
                     {
                         Console.ForegroundColor = ConsoleColor.DarkRed;
-                        Console.WriteLine("Invalid option. Please enter a number from 1 to 6.");
+                        Console.WriteLine("Invalid option. Please enter a number from 1 to 7.");
                         Console.ForegroundColor = ConsoleColor.White;
                         continue;
                     }
@@ -394,23 +394,45 @@ namespace PROG_PoE
                     switch (choice)
                     {
                         case 1:
-                            orecipe.Create_A_Recipe();
+                                Recipe orecipe = new Recipe();
+                                orecipe.Create_A_Recipe();
                             //calls the Create_A_Recipe() method from Recipe class.
-                            break;
+                            
+                                lRecipe.Add(orecipe);
+                                break;
+                            
                         case 2:
-                            if (orecipe == null)
+                            if (oSelectedRecipe == null)
                             {
                                 Console.WriteLine("No recipe is created yet. Please enter a recipe.");
                                 //if the user chooses an invalid option.
                             }
                             else
                             {
-                                orecipe.Display_Recipe();
-                                //calls the Display_Recipe() method from Recipe class.
-                            }
+                                Console.WriteLine("Please enter the name of the recipe you want to search for:");
+                                string sSearchRecipeName = Console.ReadLine();
 
+                                int icount = lRecipe.Count;
+                                Recipe oFoundRec = lRecipe.First(item => item.Name_of_Recipe == sSearchRecipeName);
+                                string sTestFoundName = oFoundRec.Name_of_Recipe;
+                                // the format of List.First() is adapted from StackOverFlow
+                                // https://stackoverflow.com/questions/3154310/search-list-of-objects-based-on-object-variable
+                                // Jaroslav Jandek
+                                // https://stackoverflow.com/users/379714/jaroslav-jandek
+                                // searches for a recipe
+
+                                oFoundRec.Display_Recipe();
+                                // displays the searched recipe.
+                            }
                             break;
                         case 3:
+                            
+                            oSelectedRecipe.Display_Selected_Recipe();
+                            
+
+
+                            break;
+                        case 4:
                             Console.WriteLine("Enter the scaling factor:" + '\n' + "Choose from halfing (0,5), doubling (2) or tripling (3).");
                             //asks the user for a factor.
                             string sfactor = Console.ReadLine();
@@ -425,53 +447,51 @@ namespace PROG_PoE
                             }
                             else
                             {
-                                orecipe.ffactor = float.Parse(sfactor);
+                                oSelectedRecipe.ffactor = float.Parse(sfactor);
                                 //converts the factor to a float.
-                                orecipe.Scale_Recipe();
+                                oSelectedRecipe.Scale_Recipe();
                                 //calls the Scale_Recipe() method from Recipe class.
-                                foreach (Ingredient ingredient in orecipe.Ingredients)
+                                foreach (Ingredient ingredient in oSelectedRecipe.Ingredients)
                                 {
-                                    Console.WriteLine($"Recipe scaled by factor of {orecipe.ffactor}. The new quantity is " + ingredient.Ingredient_Quantity);
+                                    Console.WriteLine($"Recipe scaled by factor of {oSelectedRecipe.ffactor}. The new quantity is " + ingredient.Ingredient_Quantity);
                                 }
                             }
-                            break;
-                        case 4:
 
-                            if (orecipe == null)
+                            break;
+                        case 5:
+                            if (oSelectedRecipe == null)
                             {
                                 Console.WriteLine("No recipe is created yet. Please enter a recipe. ");
                             }
                             else
                             {
-                                orecipe.Reset_Quantities(orecipe.factor);
+                                oSelectedRecipe.Reset_Quantities(oSelectedRecipe.factor);
                                 //calls the Reset_Quantities() method and passes factor in from Recipe class.
                             }
 
-                            break;
-                        case 5:
-
+                           break;
+                        case 6:
                             Console.WriteLine("Would you like to clear the recipe. YES or NO.");
                             string sResetRecipe = Console.ReadLine();
 
                             if (sResetRecipe.ToUpper() == "YES")
                             {
-                                orecipe = null;
-                                //makes sure that the object orecipe is cleared.
+                                oSelectedRecipe = null;
+                                //makes sure that the object oSelectedRecipe is cleared.
                                 Console.WriteLine("Recipe has been cleared.");
                             }
                             else
                             {
                                 Console.WriteLine("No recipe was created to clear.");
                             }
-
-                            break;
-                        case 6:
+                            return;
+                        case 7:
                             Console.WriteLine("Thank you for using the eCook_Book!");
                             //allows the user to quit.
-                            return;
+                            break;
                         default:
                             Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Invalid option. Please enter a number from 1 to 6.");
+                            Console.WriteLine("Invalid option. Please enter a number from 1 to 7.");
                             //user chooses an invalid option.
                             break;
                     }
