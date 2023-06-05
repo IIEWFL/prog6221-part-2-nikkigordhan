@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Eventing.Reader;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 //new comment to test commit
@@ -63,6 +64,7 @@ namespace PROG_PoE
     }
     //class to store the ingredient values.
 
+    public delegate void dCalories(int iNumber_Of_Calories);
 
     class Recipe
     {
@@ -75,15 +77,14 @@ namespace PROG_PoE
         }
         //getters and setters using automatic properties.
 
-        public int iTotal_Calories;
+        public static int iTotal_Calories;
         //creates a variable called iNumber_Of_Calories of type int.
-        public int Total_Calories
+        public static int Total_Calories
         {
             get { return iTotal_Calories; }
             set { iTotal_Calories = value; }
         }
         //getters and setters using automatic properties.
-        
 
         public Ingredient[] ingredients;
         //creates a variable called ingredients of type Ingredient array.
@@ -128,18 +129,24 @@ namespace PROG_PoE
         }
         //getters and setters using automatic properties.
 
-        
+        public void Reset_Total_Calories()
+        {
+            iTotal_Calories = 0;
+        }
+
         public void Create_A_Recipe()
         {
             Console.WriteLine("Enter the recipe name: ");
             string sRecipeName = Console.ReadLine();
           // asks the user to enter the name of the recipe.
             Name_of_Recipe = sRecipeName;
+
+            Reset_Total_Calories();
+
             ingredients = Enter_Ingredients();
-
-            lIngredient = ingredients.ToList();
-
             //gets the values from Enter_Ingredients() and assigns it to the variable ingredients.
+           
+            lIngredient = ingredients.ToList();
 
             if (lIngredient != null)
             {
@@ -185,13 +192,18 @@ namespace PROG_PoE
         //enters the steps
 
 
+        public static void Check_Calories(int iTotal_Number_Of_Calories)
+        {
+            if (iTotal_Number_Of_Calories > 300)
+            {
+                Console.WriteLine("The total calories have exceeded 300.");
+            }
+        }
 
-        //public delegate void dCalories();
-
-        //public static void Check_Calories(int iTotal_Number_Of_Calories)
-        //{
-        //    iTotal_Number_Of_Calories = 
-        //}
+        public static void Calculate_Total_Calories(int iCalories)
+        {
+            iTotal_Calories = iTotal_Calories + iCalories;
+        }
 
 
         public static Ingredient[] Enter_Ingredients()
@@ -214,10 +226,6 @@ namespace PROG_PoE
                 Ingredient[] ingredients = new Ingredient[num_of_Ingredients];
                 //calls the Ingredients array to store the ingredients and creates the Ingredient object.
 
-
-
-                
-              
                 for (int i = 0; i < num_of_Ingredients; i++)
                 {
 
@@ -236,16 +244,8 @@ namespace PROG_PoE
                     Console.WriteLine("Enter the number of calories ");
                     int Number_of_Calories = int.Parse(Console.ReadLine());
 
-                   // iTotal_Calories = iTotal_Calories + Number_of_Calories;
-                    
-
-
                     //sum part for each entry 
                     //if sum > 300 then inform user calorie has exceeded 300
-
-
-
-
 
                     Console.WriteLine("Choose a food group");
                     Console.WriteLine("(1) Fruit");
@@ -291,10 +291,16 @@ namespace PROG_PoE
                             //user chooses an invalid option.
                             break;
 
-
-
-
                     }
+
+                    dCalories dCalculate_Total_Calories = new dCalories(Calculate_Total_Calories);
+                    dCalories dCheck_Calories = new dCalories(Check_Calories);
+
+                    dCalculate_Total_Calories(Number_of_Calories);
+                    dCheck_Calories(iTotal_Calories);
+
+
+
                     ingredients[i] = new Ingredient { Ingredient_Name = Name_of_Ingredient, Ingredient_Quantity = Quantity_of_Ingedient, Ingredient_Unit = Unit_of_Ingredient, Number_Of_Calories = Number_of_Calories, Food_Group = FoodChoice};
                     //adds the ingredient details to the igredient list.
                     
@@ -322,6 +328,8 @@ namespace PROG_PoE
 
             }
             //goes through the Ingreident array to output each ingredient name, quantity and mesurement.
+
+            Console.WriteLine("The total calories for this recipe is -" + iTotal_Calories);
 
             Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.WriteLine("The steps are: ");
