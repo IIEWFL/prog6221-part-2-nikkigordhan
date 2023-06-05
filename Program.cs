@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Eventing.Reader;
 using System.Globalization;
 using System.Linq;
@@ -50,6 +51,15 @@ namespace PROG_PoE
         }
         //getters and setters using automatic properties.
 
+        public string sFood_Group;
+        //creates a variable called sFood_Group of type string.
+        public string Food_Group
+        {
+            get { return sFood_Group; }
+            set { sFood_Group = value; }
+        }
+        //getters and setters using automatic properties.
+
     }
     //class to store the ingredient values.
 
@@ -65,8 +75,21 @@ namespace PROG_PoE
         }
         //getters and setters using automatic properties.
 
+        public int iTotal_Calories;
+        //creates a variable called iNumber_Of_Calories of type int.
+        public int Total_Calories
+        {
+            get { return iTotal_Calories; }
+            set { iTotal_Calories = value; }
+        }
+        //getters and setters using automatic properties.
+        
+
         public Ingredient[] ingredients;
         //creates a variable called ingredients of type Ingredient array.
+
+        List<Ingredient> lIngredient = new List<Ingredient>();
+      // creates a list for ingredients
         public Ingredient[] Ingredients
         {
             get { return ingredients; }
@@ -76,6 +99,10 @@ namespace PROG_PoE
 
         public string[] sSteps;
         //creates a variable called sSteps of type string array.
+
+        List<string> lSteps = new List<string>();
+      // creates a list for steps
+
         public string[] steps
         {
             get { return sSteps; }
@@ -101,7 +128,7 @@ namespace PROG_PoE
         }
         //getters and setters using automatic properties.
 
-
+        
         public void Create_A_Recipe()
         {
             Console.WriteLine("Enter the recipe name: ");
@@ -109,12 +136,17 @@ namespace PROG_PoE
           // asks the user to enter the name of the recipe.
             Name_of_Recipe = sRecipeName;
             ingredients = Enter_Ingredients();
+
+            lIngredient = ingredients.ToList();
+
             //gets the values from Enter_Ingredients() and assigns it to the variable ingredients.
 
-            if (ingredients != null)
+            if (lIngredient != null)
             {
                 sSteps = Enter_Steps();
                 //gets the steps from Enter_Steps() and assigns it to the variable steps.
+
+                lSteps = sSteps.ToList();
             }
         }
         //creates a new recipe.
@@ -151,6 +183,17 @@ namespace PROG_PoE
 
         }
         //enters the steps
+
+
+
+        //public delegate void dCalories();
+
+        //public static void Check_Calories(int iTotal_Number_Of_Calories)
+        //{
+        //    iTotal_Number_Of_Calories = 
+        //}
+
+
         public static Ingredient[] Enter_Ingredients()
         {
             
@@ -171,6 +214,10 @@ namespace PROG_PoE
                 Ingredient[] ingredients = new Ingredient[num_of_Ingredients];
                 //calls the Ingredients array to store the ingredients and creates the Ingredient object.
 
+
+
+                
+              
                 for (int i = 0; i < num_of_Ingredients; i++)
                 {
 
@@ -189,9 +236,71 @@ namespace PROG_PoE
                     Console.WriteLine("Enter the number of calories ");
                     int Number_of_Calories = int.Parse(Console.ReadLine());
 
-                    ingredients[i] = new Ingredient { Ingredient_Name = Name_of_Ingredient, Ingredient_Quantity = Quantity_of_Ingedient, Ingredient_Unit = Unit_of_Ingredient, Number_Of_Calories = Number_of_Calories };
-                    //adds the ingredient details to the igredient array.
+                   // iTotal_Calories = iTotal_Calories + Number_of_Calories;
+                    
+
+
+                    //sum part for each entry 
+                    //if sum > 300 then inform user calorie has exceeded 300
+
+
+
+
+
+                    Console.WriteLine("Choose a food group");
+                    Console.WriteLine("(1) Fruit");
+                    Console.WriteLine("(2) Vegatables");
+                    Console.WriteLine("(3) Grains");
+                    Console.WriteLine("(4) Protein");
+                    Console.WriteLine("(5) Carbohydrates");
+                  // options for the user to choose from.
+                    string FoodGroupChoice = Console.ReadLine();
+                    //gives the user options to choose from.
+
+                    if (!int.TryParse(FoodGroupChoice, out int choice))
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine("Invalid option. Please enter a number from 1 to 5.");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        continue;
+                    }
+                    //if the user chooses an invalid option.
+
+
+                    string FoodChoice = "";
+                    switch (choice)
+                    {
+                        case 1:
+                            FoodChoice = "Fruit";
+                            break;
+                        case 2:
+                            FoodChoice = "Vegatables";
+                            break;
+                        case 3:
+                            FoodChoice = "Grains";
+                            break;
+                        case 4:
+                            FoodChoice = "Protein";
+                            break;
+                        case 5:
+                            FoodChoice = "Carbohydrates";
+                            break;
+                        default:
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Invalid option. Please enter a number from 1 to 5.");
+                            //user chooses an invalid option.
+                            break;
+
+
+
+
+                    }
+                    ingredients[i] = new Ingredient { Ingredient_Name = Name_of_Ingredient, Ingredient_Quantity = Quantity_of_Ingedient, Ingredient_Unit = Unit_of_Ingredient, Number_Of_Calories = Number_of_Calories, Food_Group = FoodChoice};
+                    //adds the ingredient details to the igredient list.
+                    
+                
                 }
+
                 return ingredients;
 
             }
@@ -199,23 +308,7 @@ namespace PROG_PoE
         }
         //enters the ingredients
 
-        public void Display_Selected_Recipe()
-        {
-            var SortedList = lRecipe.OrderBy(r => r.Name_of_Recipe).ToList();
-            // the format of List.OrderBy() is adapted from StackOverFlow
-            // https://stackoverflow.com/questions/3309188/how-to-sort-a-listt-by-a-property-in-the-object
-            // Lazarus
-            // https://stackoverflow.com/users/19540/lazarus
-            // orders the recipe names alphabetically.
-            int iNumberRecipes = lRecipe.Count;
-
-            for (int i = 0; i < iNumberRecipes; i++)
-            {
-
-                Console.WriteLine("Recipe " + i + lRecipe[i].Name_of_Recipe);
-            }
-        }
-       
+        
 
         public void Display_Recipe()
         {
@@ -223,9 +316,9 @@ namespace PROG_PoE
             Console.WriteLine("The recipe is shown below:");
             Console.WriteLine("The ingredients are: ");
             Console.ForegroundColor = ConsoleColor.White;
-            foreach (Ingredient ingredient in ingredients)
+            foreach (Ingredient ingredient in lIngredient)
             {
-                Console.WriteLine("The name of ingredient - " + ingredient.sIngredient_name + '\n' + "Ingredient quantity is - " + ingredient.dIngredient_quantity + " " + ingredient.sIngredient_unit);
+                Console.WriteLine("The name of ingredient - " + ingredient.sIngredient_name + '\n' + "Ingredient quantity is - " + ingredient.dIngredient_quantity + " " + ingredient.sIngredient_unit + '\n' + "The food group is - " + ingredient.sFood_Group);
 
             }
             //goes through the Ingreident array to output each ingredient name, quantity and mesurement.
@@ -235,7 +328,7 @@ namespace PROG_PoE
             Console.ForegroundColor = ConsoleColor.White;
             int iStepCounter = 1;
 
-            foreach (String steps in sSteps)
+            foreach (String steps in lSteps)
             {
                 Console.WriteLine("Step " + iStepCounter + ": " + steps);
             }
@@ -309,7 +402,7 @@ namespace PROG_PoE
             int iLoopCounter = 0;
 
 
-            foreach (Ingredient ingredient in ingredients)
+            foreach (Ingredient ingredient in lIngredient)
             {
                 scaled = ingredient.Ingredient_Quantity * factor;
                 String sMeasurement = ingredient.sIngredient_unit;
@@ -326,7 +419,7 @@ namespace PROG_PoE
         public void Reset_Quantities(double factor)
         {
             int iLoopCounter = 0;
-            foreach (Ingredient ingredients in Ingredients)
+            foreach (Ingredient ingredients in lIngredient)
             {
                 double scaled = ingredients.Ingredient_Quantity / factor;
                 String sMeasurement = ingredients.sIngredient_unit;
@@ -344,6 +437,8 @@ namespace PROG_PoE
 
     class eCookBook
     {
+        
+
         static void Main(string[] args)
         {
             try
@@ -414,7 +509,6 @@ namespace PROG_PoE
 
                                 int icount = lRecipe.Count;
                                 Recipe oFoundRec = lRecipe.First(item => item.Name_of_Recipe == sSearchRecipeName);
-                                string sTestFoundName = oFoundRec.Name_of_Recipe;
                                 // the format of List.First() is adapted from StackOverFlow
                                 // https://stackoverflow.com/questions/3154310/search-list-of-objects-based-on-object-variable
                                 // Jaroslav Jandek
@@ -427,8 +521,19 @@ namespace PROG_PoE
                             break;
                         case 3:
                             
-                            oSelectedRecipe.Display_Selected_Recipe();
-                            
+                            List<Recipe> SortedList = lRecipe.OrderBy(r => r.Name_of_Recipe).ToList();
+                                // the format of List.Sort() is adapted from StackOverFlow
+                                // https://stackoverflow.com/questions/3309188/how-to-sort-a-listt-by-a-property-in-the-object
+                                // Lazarus
+                                // https://stackoverflow.com/users/19540/lazarus
+                                // orders the recipe names alphabetically.
+                            int iNumberRecipes = lRecipe.Count;
+
+                            for (int i = 0; i < iNumberRecipes; i++)
+                            {
+
+                                Console.WriteLine("Recipe " + (i+1) + ": "+ SortedList[i].Name_of_Recipe);
+                            }
 
 
                             break;
@@ -449,11 +554,27 @@ namespace PROG_PoE
                             {
                                 oSelectedRecipe.ffactor = float.Parse(sfactor);
                                 //converts the factor to a float.
-                                oSelectedRecipe.Scale_Recipe();
-                                //calls the Scale_Recipe() method from Recipe class.
-                                foreach (Ingredient ingredient in oSelectedRecipe.Ingredients)
+                                try
                                 {
-                                    Console.WriteLine($"Recipe scaled by factor of {oSelectedRecipe.ffactor}. The new quantity is " + ingredient.Ingredient_Quantity);
+                                    if (oSelectedRecipe.sName_of_Recipe != "")
+                                    {
+
+                                        oSelectedRecipe.Scale_Recipe();
+                                        //calls the Scale_Recipe() method from Recipe class.
+                                        foreach (Ingredient ingredient in oSelectedRecipe.Ingredients)
+                                        {
+                                            Console.WriteLine($"Recipe scaled by factor of {oSelectedRecipe.ffactor}. The new quantity is " + ingredient.Ingredient_Quantity);
+
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine($"Please search for the recipe that needs to be scaled first.");
+                                    }
+                                }
+                                catch (Exception ex) 
+                                {
+                                    Console.WriteLine($"Please search for the recipe that needs to be scaled first.");
                                 }
                             }
 
@@ -511,6 +632,11 @@ namespace PROG_PoE
             //contains main method to output the recipe.
 
         }
+
+        //public static void Display_Selected_Recipe()
+        //{
+           
+        //}
     }
 }
 //namespace
