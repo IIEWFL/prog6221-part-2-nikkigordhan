@@ -9,6 +9,8 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 //new comment to test commit
 
+// working PoE with latest changes
+
 namespace PROG_PoE
 {
     class Ingredient
@@ -129,6 +131,15 @@ namespace PROG_PoE
         }
         //getters and setters using automatic properties.
 
+        public Boolean Check_For_Found_Recipe;
+        //creates a variable called Name_of_Recipe of type string.
+        public Boolean bCheck_For_Found_Recipe
+        {
+            get { return Check_For_Found_Recipe; }
+            set { Check_For_Found_Recipe = value; }
+        }
+        //getters and setters using automatic properties.
+
         public void Reset_Total_Calories()
         {
             iTotal_Calories = 0;
@@ -205,6 +216,10 @@ namespace PROG_PoE
             iTotal_Calories = iTotal_Calories + iCalories;
         }
 
+            // the format of a delagte is adapted from CodeGuru
+            // https://www.codeguru.com/csharp/c-sharp-delegates-2/
+            // Joydip Kanjilal
+            // https://www.codeguru.com/author/joydip-kanjilal/
 
         public static Ingredient[] Enter_Ingredients()
         {
@@ -415,6 +430,7 @@ namespace PROG_PoE
                 scaled = ingredient.Ingredient_Quantity * factor;
                 String sMeasurement = ingredient.sIngredient_unit;
 
+                ingredient.Ingredient_Quantity = scaled;
                 //Conversion_Scaled( iLoopCounter ,scaled );
 
             }
@@ -440,6 +456,8 @@ namespace PROG_PoE
             //gets the scaled quantity and divides it by the factor to get the orginal quantity.
         }
         //allows the user to reset the quantites back to the orginal quantity.
+
+        
     }
     //gets the recipe ingredients and steps.
 
@@ -457,16 +475,20 @@ namespace PROG_PoE
                 Console.WriteLine("Welcome to your very own eCook-Book. Where you can create any one of your favourite recipes.");
 
                 List<Recipe> lRecipe = new List<Recipe>();
-              // creates a list of type Recipe 
+                // creates a list of type Recipe 
                     // the format of a list is adapted from C# Corner
                     // https://www.c-sharpcorner.com/article/c-sharp-list/
                     // Mahesh Chand
                     // https://www.c-sharpcorner.com/members/mahesh-chand
 
+                Recipe oSelectedRecipe = new Recipe();
+                //creates an object oSelectedRecipe of type Recipe.
+                oSelectedRecipe.Check_For_Found_Recipe = false;
+
                 while (true)
                 {
-                    Recipe oSelectedRecipe = new Recipe();
-                    //creates an object oSelectedRecipe of type Recipe.
+                    
+                    
 
                     Console.ForegroundColor = ConsoleColor.White;
                     //https://www.tutorialspoint.com/how-to-change-the-foreground-color-of-text-in-chash-console#:~:text=To%20change%20the%20Foreground%20Color%20of%20text%2C%20use%20the%20Console,ForegroundColor%20property%20in%20C%23.
@@ -505,7 +527,7 @@ namespace PROG_PoE
                                 break;
                             
                         case 2:
-                            if (oSelectedRecipe == null)
+                            if (oSelectedRecipe == null )
                             {
                                 Console.WriteLine("No recipe is created yet. Please enter a recipe.");
                                 //if the user chooses an invalid option.
@@ -523,8 +545,13 @@ namespace PROG_PoE
                                 // https://stackoverflow.com/users/379714/jaroslav-jandek
                                 // searches for a recipe
 
-                                oFoundRec.Display_Recipe();
+                                oSelectedRecipe = oFoundRec;
+                                oSelectedRecipe.Check_For_Found_Recipe = true;
+
+                                oSelectedRecipe.Display_Recipe();
                                 // displays the searched recipe.
+
+                                oFoundRec = null;
                             }
                             break;
                         case 3:
@@ -546,51 +573,59 @@ namespace PROG_PoE
 
                             break;
                         case 4:
-                            Console.WriteLine("Enter the scaling factor:" + '\n' + "Choose from halfing (0,5), doubling (2) or tripling (3).");
-                            //asks the user for a factor.
-                            string sfactor = Console.ReadLine();
-                            //converts it to a string value.
-
-                            if (sfactor.Length < 0)
+                            if (oSelectedRecipe == null || oSelectedRecipe.Check_For_Found_Recipe == false)
                             {
-
-                                Console.WriteLine("Invalid scaling factor. Please enter a valid number.");
-                                //if the user chooses an invalid factor.
-                                continue;
+                                Console.WriteLine("No recipe is found. Please search for a recipe first.");
                             }
                             else
                             {
-                                oSelectedRecipe.ffactor = float.Parse(sfactor);
-                                //converts the factor to a float.
-                                try
+
+
+                                Console.WriteLine("Enter the scaling factor:" + '\n' + "Choose from halfing (0,5), doubling (2) or tripling (3).");
+                                //asks the user for a factor.
+                                string sfactor = Console.ReadLine();
+                                //converts it to a string value.
+
+                                if (sfactor.Length < 0)
                                 {
-                                    if (oSelectedRecipe.sName_of_Recipe != "")
+
+                                    Console.WriteLine("Invalid scaling factor. Please enter a valid number.");
+                                    //if the user chooses an invalid factor.
+                                    continue;
+                                }
+                                else
+                                {
+                                    oSelectedRecipe.ffactor = float.Parse(sfactor);
+                                    //converts the factor to a float.
+                                    try
                                     {
-
-                                        oSelectedRecipe.Scale_Recipe();
-                                        //calls the Scale_Recipe() method from Recipe class.
-                                        foreach (Ingredient ingredient in oSelectedRecipe.Ingredients)
+                                        if (oSelectedRecipe.sName_of_Recipe != "")
                                         {
-                                            Console.WriteLine($"Recipe scaled by factor of {oSelectedRecipe.ffactor}. The new quantity is " + ingredient.Ingredient_Quantity);
+                                            
+                                            oSelectedRecipe.Scale_Recipe();
+                                            //calls the Scale_Recipe() method from Recipe class.
+                                            foreach (Ingredient ingredient in oSelectedRecipe.Ingredients)
+                                            {
+                                                Console.WriteLine($"Recipe scaled by factor of {oSelectedRecipe.ffactor}. The new quantity is " + ingredient.Ingredient_Quantity);
 
+                                            }
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine($"Please search for the recipe that needs to be scaled first.");
                                         }
                                     }
-                                    else
+                                    catch (Exception ex)
                                     {
                                         Console.WriteLine($"Please search for the recipe that needs to be scaled first.");
                                     }
                                 }
-                                catch (Exception ex) 
-                                {
-                                    Console.WriteLine($"Please search for the recipe that needs to be scaled first.");
-                                }
                             }
-
                             break;
                         case 5:
-                            if (oSelectedRecipe == null)
+                            if (oSelectedRecipe == null || oSelectedRecipe.Check_For_Found_Recipe == false)
                             {
-                                Console.WriteLine("No recipe is created yet. Please enter a recipe. ");
+                                Console.WriteLine("No recipe is found. Please search for a recipe first.");
                             }
                             else
                             {
@@ -600,18 +635,25 @@ namespace PROG_PoE
 
                            break;
                         case 6:
-                            Console.WriteLine("Would you like to clear the recipe. YES or NO.");
-                            string sResetRecipe = Console.ReadLine();
-
-                            if (sResetRecipe.ToUpper() == "YES")
+                            if (oSelectedRecipe == null || oSelectedRecipe.Check_For_Found_Recipe == false)
                             {
-                                oSelectedRecipe = null;
-                                //makes sure that the object oSelectedRecipe is cleared.
-                                Console.WriteLine("Recipe has been cleared.");
+                                Console.WriteLine("No recipe is found. Please search for a recipe first.");
                             }
                             else
                             {
-                                Console.WriteLine("No recipe was created to clear.");
+                                Console.WriteLine("Would you like to clear the recipe. YES or NO.");
+                                string sResetRecipe = Console.ReadLine();
+
+                                if (sResetRecipe.ToUpper() == "YES")
+                                {
+                                    oSelectedRecipe = null;
+                                    //makes sure that the object oSelectedRecipe is cleared.
+                                    Console.WriteLine("Recipe has been cleared.");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("No recipe was created to clear.");
+                                }
                             }
                             return;
                         case 7:
@@ -641,10 +683,8 @@ namespace PROG_PoE
 
         }
 
-        //public static void Display_Selected_Recipe()
-        //{
-           
-        //}
+        
+       
     }
 }
 //namespace
