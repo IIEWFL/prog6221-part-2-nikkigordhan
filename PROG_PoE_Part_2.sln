@@ -5,6 +5,11 @@ VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PROG_PoE_Part_2", "PROG_PoE_Part_2.csproj", "{A13479C4-5D8B-42C3-914F-D148D0530CA8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unittest_Prog_PoE_Part2", "..\Unittest_Prog_PoE_Part2\Unittest_Prog_PoE_Part2.csproj", "{2B6C282E-08CA-4C54-916E-420B076F40C3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A13479C4-5D8B-42C3-914F-D148D0530CA8} = {A13479C4-5D8B-42C3-914F-D148D0530CA8}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +20,10 @@ Global
 		{A13479C4-5D8B-42C3-914F-D148D0530CA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A13479C4-5D8B-42C3-914F-D148D0530CA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A13479C4-5D8B-42C3-914F-D148D0530CA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B6C282E-08CA-4C54-916E-420B076F40C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B6C282E-08CA-4C54-916E-420B076F40C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B6C282E-08CA-4C54-916E-420B076F40C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B6C282E-08CA-4C54-916E-420B076F40C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

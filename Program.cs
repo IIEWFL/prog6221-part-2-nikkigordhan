@@ -13,7 +13,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace PROG_PoE
 {
-    class Ingredient
+    public class Ingredient
     {
         //https://www.w3schools.com/cs/cs_properties.php
         //w3schools
@@ -68,20 +68,20 @@ namespace PROG_PoE
 
     public delegate void dCalories(int iNumber_Of_Calories);
 
-    class Recipe
+    public class Recipe
     {
         public string Name_of_Recipe;
         //creates a variable called Name_of_Recipe of type string.
         public string sName_of_Recipe
         {
             get { return Name_of_Recipe; }
-            set { Name_of_Recipe = value;}
+            set { Name_of_Recipe = value; }
         }
         //getters and setters using automatic properties.
 
-        public static int iTotal_Calories;
+        public int iTotal_Calories;
         //creates a variable called iNumber_Of_Calories of type int.
-        public static int Total_Calories
+        public int Total_Calories
         {
             get { return iTotal_Calories; }
             set { iTotal_Calories = value; }
@@ -92,7 +92,7 @@ namespace PROG_PoE
         //creates a variable called ingredients of type Ingredient array.
 
         List<Ingredient> lIngredient = new List<Ingredient>();
-      // creates a list for ingredients
+        // creates a list for ingredients
         public Ingredient[] Ingredients
         {
             get { return ingredients; }
@@ -104,7 +104,7 @@ namespace PROG_PoE
         //creates a variable called sSteps of type string array.
 
         List<string> lSteps = new List<string>();
-      // creates a list for steps
+        // creates a list for steps
 
         public string[] steps
         {
@@ -147,16 +147,16 @@ namespace PROG_PoE
 
         public void Create_A_Recipe()
         {
-            Console.WriteLine("Enter the recipe name: ");
+            Console.WriteLine('\t' + "Enter the recipe name: ");
             string sRecipeName = Console.ReadLine();
-          // asks the user to enter the name of the recipe.
+            // asks the user to enter the name of the recipe.
             Name_of_Recipe = sRecipeName;
 
             Reset_Total_Calories();
 
             ingredients = Enter_Ingredients();
             //gets the values from Enter_Ingredients() and assigns it to the variable ingredients.
-           
+
             lIngredient = ingredients.ToList();
 
             if (lIngredient != null)
@@ -169,12 +169,12 @@ namespace PROG_PoE
         }
         //creates a new recipe.
 
-        public static string[] Enter_Steps()
+        public string[] Enter_Steps()
         {
-            Console.WriteLine("Enter the number of steps: ");
+            Console.WriteLine('\t' + "Enter the number of steps: ");
             string snum_of_Steps = Console.ReadLine();
             int num_of_Steps;
-            if(!int.TryParse(snum_of_Steps, out num_of_Steps))
+            if (!int.TryParse(snum_of_Steps, out num_of_Steps))
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Please enter a numeric value.");
@@ -188,7 +188,7 @@ namespace PROG_PoE
 
                 for (int i = 0; i < num_of_Steps; i++)
                 {
-                    Console.WriteLine($"Enter the step #{i + 1}:");
+                    Console.WriteLine('\t' + $"Enter the step #{i + 1}:");
                     string steps = Console.ReadLine();
                     //asks the user to enter the step, if the user enters 3 steps then because i is = 0 it will add 1 and output the first step.
 
@@ -203,7 +203,7 @@ namespace PROG_PoE
         //enters the steps
 
 
-        public static void Check_Calories(int iTotal_Number_Of_Calories)
+        public void Check_Calories(int iTotal_Number_Of_Calories)
         {
             if (iTotal_Number_Of_Calories > 300)
             {
@@ -211,25 +211,27 @@ namespace PROG_PoE
             }
         }
 
-        public static void Calculate_Total_Calories(int iCalories)
+        public void Calculate_Total_Calories(int iCalories)
         {
             iTotal_Calories = iTotal_Calories + iCalories;
+            //iTotal_Calories = iTotal_Calories + iCalories + 1;
+            // is used for negative unit testing
         }
 
-            // the format of a delagte is adapted from CodeGuru
-            // https://www.codeguru.com/csharp/c-sharp-delegates-2/
-            // Joydip Kanjilal
-            // https://www.codeguru.com/author/joydip-kanjilal/
+        // the format of a delagte is adapted from CodeGuru
+        // https://www.codeguru.com/csharp/c-sharp-delegates-2/
+        // Joydip Kanjilal
+        // https://www.codeguru.com/author/joydip-kanjilal/
 
-        public static Ingredient[] Enter_Ingredients()
+        public Ingredient[] Enter_Ingredients()
         {
-            
-            Console.WriteLine("Enter the number of ingredients: ");
+
+            Console.WriteLine('\t' + "Enter the number of ingredients: ");
             string snum_of_Ingredients = Console.ReadLine();
             int num_of_Ingredients;
             if (!int.TryParse(snum_of_Ingredients, out num_of_Ingredients))
             {
-                Console.ForegroundColor = ConsoleColor.Red; 
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Please enter a numeric value.");
                 return null;
             }
@@ -244,31 +246,33 @@ namespace PROG_PoE
                 for (int i = 0; i < num_of_Ingredients; i++)
                 {
 
-                    Console.WriteLine("Enter the ingredient name: ");
+                    Console.WriteLine('\t' + "Enter the ingredient name: ");
                     string Name_of_Ingredient = Console.ReadLine();
                     //asks the user to enter the ingredients name and then converts it to a string.
 
-                    Console.WriteLine("Enter the ingredients quantity: " + '\n' + "Please enter only the number.Example: 2 (tablespoon of sugar)");
+                    Console.WriteLine('\t' + "Enter the ingredients quantity: " + '\n' + '\t' + "Please enter only the number.Example: 2 (tablespoon of sugar)");
                     double Quantity_of_Ingedient = double.Parse(Console.ReadLine());
                     //asks the user to enter the quantity of the ingredient and then converts it to a double.
 
-                    Console.WriteLine("Enter the unit of mesurement: " + '\n' + "Example: teaspoon, tablespoon, cup, ect");
+                    Console.WriteLine('\t' + "Enter the unit of mesurement: " + '\n' + '\t' + "Example: teaspoon, tablespoon, cup, ect");
                     string Unit_of_Ingredient = Console.ReadLine();
                     //asks the user to enter the unit of measurement for the ingredient and then converts it to a string.
 
-                    Console.WriteLine("Enter the number of calories ");
+                    Console.WriteLine('\t' + "Enter the number of calories ");
                     int Number_of_Calories = int.Parse(Console.ReadLine());
 
                     //sum part for each entry 
                     //if sum > 300 then inform user calorie has exceeded 300
-
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
                     Console.WriteLine("Choose a food group");
-                    Console.WriteLine("(1) Fruit");
-                    Console.WriteLine("(2) Vegatables");
-                    Console.WriteLine("(3) Grains");
-                    Console.WriteLine("(4) Protein");
-                    Console.WriteLine("(5) Carbohydrates");
-                  // options for the user to choose from.
+                    Console.ForegroundColor = ConsoleColor.White;
+
+                    Console.WriteLine('\t' + "(1) Fruit");
+                    Console.WriteLine('\t' + "(2) Vegatables");
+                    Console.WriteLine('\t' + "(3) Grains");
+                    Console.WriteLine('\t' + "(4) Protein");
+                    Console.WriteLine('\t' + "(5) Carbohydrates");
+                    // options for the user to choose from.
                     string FoodGroupChoice = Console.ReadLine();
                     //gives the user options to choose from.
 
@@ -316,44 +320,63 @@ namespace PROG_PoE
 
 
 
-                    ingredients[i] = new Ingredient { Ingredient_Name = Name_of_Ingredient, Ingredient_Quantity = Quantity_of_Ingedient, Ingredient_Unit = Unit_of_Ingredient, Number_Of_Calories = Number_of_Calories, Food_Group = FoodChoice};
+                    ingredients[i] = new Ingredient { Ingredient_Name = Name_of_Ingredient, Ingredient_Quantity = Quantity_of_Ingedient, Ingredient_Unit = Unit_of_Ingredient, Number_Of_Calories = Number_of_Calories, Food_Group = FoodChoice };
                     //adds the ingredient details to the igredient list.
-                    
-                
+
+
                 }
 
                 return ingredients;
 
             }
-            
+
         }
         //enters the ingredients
 
-        
+        public void Calory_Category()
+        {
+            if (iTotal_Calories <= 100)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Total calories is less than 100.");
+            }
+            else if (iTotal_Calories >= 101 && iTotal_Calories <= 200)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Total calories is less than 200 but more than 100.");
+            }
+            else if (iTotal_Calories >= 201 && iTotal_Calories <= 299)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Total calories is more than 300.Consuming too much of this food can lead to helath problems.");
+            }
+        }
+      // method to show an explanation depending on the calory range.
 
-        public void Display_Recipe()
+public void Display_Recipe()
         {
             Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.WriteLine("The recipe is shown below:");
-            Console.WriteLine("The ingredients are: ");
+            Console.WriteLine('\t' + "The recipe is shown below:");
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine('\t' + "The ingredients are: ");
             Console.ForegroundColor = ConsoleColor.White;
             foreach (Ingredient ingredient in lIngredient)
             {
-                Console.WriteLine("The name of ingredient - " + ingredient.sIngredient_name + '\n' + "Ingredient quantity is - " + ingredient.dIngredient_quantity + " " + ingredient.sIngredient_unit + '\n' + "The food group is - " + ingredient.sFood_Group);
+                Console.WriteLine('\t' + "The name of ingredient : " + ingredient.sIngredient_name + '\n' +  '\t' +"Ingredient quantity is : " + ingredient.dIngredient_quantity + " " + ingredient.sIngredient_unit + '\n' + '\t' + "The food group is : " + ingredient.sFood_Group);
 
             }
             //goes through the Ingreident array to output each ingredient name, quantity and mesurement.
 
-            Console.WriteLine("The total calories for this recipe is -" + iTotal_Calories);
+            Console.WriteLine('\t' + "The total calories for this recipe is : " + iTotal_Calories);
 
             Console.ForegroundColor = ConsoleColor.DarkBlue;
-            Console.WriteLine("The steps are: ");
+            Console.WriteLine('\t' + "The steps are: ");
             Console.ForegroundColor = ConsoleColor.White;
             int iStepCounter = 1;
 
             foreach (String steps in lSteps)
             {
-                Console.WriteLine("Step " + iStepCounter + ": " + steps);
+                Console.WriteLine('\t' + "Step " + iStepCounter + " : " + steps);
             }
             //goes through the Steps array to output step.
 
@@ -431,7 +454,7 @@ namespace PROG_PoE
                 String sMeasurement = ingredient.sIngredient_unit;
 
                 ingredient.Ingredient_Quantity = scaled;
-                //Conversion_Scaled( iLoopCounter ,scaled );
+                Conversion_Scaled( iLoopCounter ,scaled );
 
             }
             //gets the ingredient quantity and times it by the factor to get the scaled value.
@@ -448,7 +471,9 @@ namespace PROG_PoE
                 double scaled = ingredients.Ingredient_Quantity / factor;
                 String sMeasurement = ingredients.sIngredient_unit;
 
-               // Conversion_Reset(iLoopCounter, scaled);
+                ingredients.Ingredient_Quantity = scaled;
+
+                Conversion_Reset(iLoopCounter, scaled);
 
 
                 Console.WriteLine("Quantities are reset to orginal quantity.The orginal quantity is " + ingredients.Ingredient_Quantity);
@@ -469,7 +494,7 @@ namespace PROG_PoE
         {
             try
             {
-                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.ForegroundColor = ConsoleColor.Blue;
                 //changes the colour of the font.
                 Console.Title = "eCookBook";
                 Console.WriteLine("Welcome to your very own eCook-Book. Where you can create any one of your favourite recipes.");
@@ -487,22 +512,22 @@ namespace PROG_PoE
 
                 while (true)
                 {
-                    
-                    
 
                     Console.ForegroundColor = ConsoleColor.White;
                     //https://www.tutorialspoint.com/how-to-change-the-foreground-color-of-text-in-chash-console#:~:text=To%20change%20the%20Foreground%20Color%20of%20text%2C%20use%20the%20Console,ForegroundColor%20property%20in%20C%23.
                     //AmitDiwan
                     //updated 13 November 2019
 
+                    Console.ForegroundColor = ConsoleColor.DarkCyan; 
                     Console.WriteLine("Choose an option for what you want to do.");
-                    Console.WriteLine("(1) Create a new recipe");
-                    Console.WriteLine("(2) Search for a certain recipe to display");
-                    Console.WriteLine("(3) Display all the recipe names");
-                    Console.WriteLine("(4) Scale the recipe");
-                    Console.WriteLine("(5) Reset the ingredient quantity to its orginal value");
-                    Console.WriteLine("(6) Clear the recipe");
-                    Console.WriteLine("(7) Quit");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine('\t' + "(1) Create a new recipe");
+                    Console.WriteLine('\t' + "(2) Search for a certain recipe to display");
+                    Console.WriteLine('\t' + "(3) Display all the recipe names");
+                    Console.WriteLine('\t' + "(4) Scale the recipe");
+                    Console.WriteLine('\t' + "(5) Reset the ingredient quantity to its orginal value");
+                    Console.WriteLine('\t' + "(6) Clear the recipe");
+                    Console.WriteLine('\t' + "(7) Quit");
 
                     string choiceString = Console.ReadLine();
                     //gives the user options to choose from.
@@ -534,7 +559,7 @@ namespace PROG_PoE
                             }
                             else
                             {
-                                Console.WriteLine("Please enter the name of the recipe you want to search for:");
+                                Console.WriteLine('\t' + "Please enter the name of the recipe you want to search for:");
                                 string sSearchRecipeName = Console.ReadLine();
 
                                 int icount = lRecipe.Count;
@@ -579,9 +604,7 @@ namespace PROG_PoE
                             }
                             else
                             {
-
-
-                                Console.WriteLine("Enter the scaling factor:" + '\n' + "Choose from halfing (0,5), doubling (2) or tripling (3).");
+                                Console.WriteLine('\t' + "Enter the scaling factor:" + '\n' + "Choose from halfing (0,5), doubling (2) or tripling (3).");
                                 //asks the user for a factor.
                                 string sfactor = Console.ReadLine();
                                 //converts it to a string value.
@@ -606,7 +629,7 @@ namespace PROG_PoE
                                             //calls the Scale_Recipe() method from Recipe class.
                                             foreach (Ingredient ingredient in oSelectedRecipe.Ingredients)
                                             {
-                                                Console.WriteLine($"Recipe scaled by factor of {oSelectedRecipe.ffactor}. The new quantity is " + ingredient.Ingredient_Quantity);
+                                                Console.WriteLine('\t' + $"Recipe scaled by factor of {oSelectedRecipe.ffactor}. The new quantity is " + ingredient.Ingredient_Quantity);
 
                                             }
                                         }
@@ -641,7 +664,7 @@ namespace PROG_PoE
                             }
                             else
                             {
-                                Console.WriteLine("Would you like to clear the recipe. YES or NO.");
+                                Console.WriteLine('\t' + "Would you like to clear the recipe. YES or NO.");
                                 string sResetRecipe = Console.ReadLine();
 
                                 if (sResetRecipe.ToUpper() == "YES")
@@ -657,6 +680,7 @@ namespace PROG_PoE
                             }
                             return;
                         case 7:
+
                             Console.WriteLine("Thank you for using the eCook_Book!");
                             //allows the user to quit.
                             break;
