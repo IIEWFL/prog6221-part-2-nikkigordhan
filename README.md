@@ -24,9 +24,11 @@ https://github.com/IIEWFL/prog6221-part-2-nikkigordhan/blob/main/PROG_PoE_Part_2
 <h5> For a regular user: </h5>
 Step 1: Open up the release file. </br>
 Step 2: Use the link to open up the file. </br> 
- </p>
+The link is below: </br>
+https://github.com/IIEWFL/prog6221-part-2-nikkigordhan/blob/main/bin/Release/PROG_PoE_Part_1.exe </p>
 
 <h4> Changes made from Part 1: </h4>
 <p>The changes I made from Part 1 for Part 2 is explained below:</br>
 	1. In Part 1 my scale an ingredient  did not work properly.The scaled variable should be equal to the new value of the ingredient  quantity in the 		ingredient  list. </br> 
-	2. In Part 1 my reset the ingredient  quantity did not work properly. The scaled variable should be equal to the new value of ingredient  quanttiy in the 	  ingredient  list.</p>
+	2. In Part 1 my reset the ingredient  quantity did not work properly. The scaled variable should be equal to the new value of ingredient  quantiyy in the 	  ingredient  list. </br>
+	3. When the user runs the application they can chose an option, if they chose to scale a recipe first an error will occur as they did not create a recipe 	  'object' yet.
