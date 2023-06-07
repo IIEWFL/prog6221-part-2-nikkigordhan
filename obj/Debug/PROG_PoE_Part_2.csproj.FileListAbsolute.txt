@@ -6,3 +6,14 @@ C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\prog6221-part-2-nikkigordhan\bin\
 C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\prog6221-part-2-nikkigordhan\bin\Debug\PROG_PoE_Part_2.pdb
 C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\prog6221-part-2-nikkigordhan\obj\Debug\PROG_PoE_Part_2.exe
 C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\prog6221-part-2-nikkigordhan\obj\Debug\PROG_PoE_Part_2.pdb
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\PROG6221_PoE_Part2_ST10108243_NikkiGordhan\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\PROG6221_PoE_Part2_ST10108243_NikkiGordhan\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\PROG6221_PoE_Part2_ST10108243_NikkiGordhan\bin\Debug\Microsoft.TestPlatform.AdapterUtilities.dll
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\PROG6221_PoE_Part2_ST10108243_NikkiGordhan\bin\Debug\PROG_PoE_Part_2.exe.config
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\PROG6221_PoE_Part2_ST10108243_NikkiGordhan\bin\Debug\PROG_PoE_Part_2.exe
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\PROG6221_PoE_Part2_ST10108243_NikkiGordhan\bin\Debug\PROG_PoE_Part_2.pdb
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\PROG6221_PoE_Part2_ST10108243_NikkiGordhan\obj\Debug\PROG_PoE_Part_2.csproj.AssemblyReference.cache
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\PROG6221_PoE_Part2_ST10108243_NikkiGordhan\obj\Debug\PROG_PoE_Part_2.csproj.SuggestedBindingRedirects.cache
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\PROG6221_PoE_Part2_ST10108243_NikkiGordhan\obj\Debug\PROG_PoE_Part_2.csproj.CoreCompileInputs.cache
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\PROG6221_PoE_Part2_ST10108243_NikkiGordhan\obj\Debug\PROG_PoE_Part_2.exe
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\PROG6221_PoE_Part2_ST10108243_NikkiGordhan\obj\Debug\PROG_PoE_Part_2.pdb

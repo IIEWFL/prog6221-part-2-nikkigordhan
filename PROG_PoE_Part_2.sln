@@ -6,9 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PROG_PoE_Part_2", "PROG_PoE_Part_2.csproj", "{A13479C4-5D8B-42C3-914F-D148D0530CA8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unittest_Prog_PoE_Part2", "..\Unittest_Prog_PoE_Part2\Unittest_Prog_PoE_Part2.csproj", "{2B6C282E-08CA-4C54-916E-420B076F40C3}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A13479C4-5D8B-42C3-914F-D148D0530CA8} = {A13479C4-5D8B-42C3-914F-D148D0530CA8}
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
