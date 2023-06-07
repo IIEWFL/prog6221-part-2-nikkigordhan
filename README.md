@@ -19,7 +19,7 @@
 Step 2: Click on th file that ends with csproj. </br>
 Step 3: Use Visual Studio IDE to open up the project file. </br>
 The link is below: </br>
-</p>
+https://github.com/IIEWFL/prog6221-part-2-nikkigordhan/blob/main/PROG_PoE_Part_2.csproj </p>
 	
 <h5> For a regular user: </h5>
 Step 1: Open up the release file. </br>
