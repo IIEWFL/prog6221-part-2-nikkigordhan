@@ -28,5 +28,5 @@ Step 2: Use the link to open up the file. </br>
 
 <h4> Changes made from Part 1: </h4>
 <p>The changes I made from Part 1 for Part 2 is explained below:</br>
-	1. In Part 1 my scale an ingreident did not work properly.The scaled variable should be equal to the new valu of the ingredeint quantity in the 		ingredient list. </br> 
-	2. In Part 1 my reset the ingredeint quantity did not work properly. The scaled variable should be equal to the new value of ingreident quanttiy in the 	ingreiedeint list.</p>
+	1. In Part 1 my scale an ingredient  did not work properly.The scaled variable should be equal to the new value of the ingredient  quantity in the 		ingredient  list. </br> 
+	2. In Part 1 my reset the ingredient  quantity did not work properly. The scaled variable should be equal to the new value of ingredient  quanttiy in the 	  ingredient  list.</p>
