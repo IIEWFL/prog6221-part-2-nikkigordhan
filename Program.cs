@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.SqlServer.Server;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Eventing.Reader;
@@ -10,7 +11,8 @@ using System.Security.Cryptography.X509Certificates;
 //new comment to test commit
 
 // working PoE with latest changes
-
+//Nikki Gordhan
+//POE Part2 
 namespace PROG_PoE
 {
     public class Ingredient
@@ -223,6 +225,8 @@ namespace PROG_PoE
         // Joydip Kanjilal
         // https://www.codeguru.com/author/joydip-kanjilal/
 
+
+       
         public Ingredient[] Enter_Ingredients()
         {
 
@@ -350,6 +354,11 @@ namespace PROG_PoE
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Total calories is less than 300.");
             }
+            else if (iTotal_Calories >= 300)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("The total calories have exceed 300.");
+            }
         }
       // method to show an explanation depending on the calory range.
 
@@ -368,6 +377,8 @@ public void Display_Recipe()
             //goes through the Ingreident array to output each ingredient name, quantity and mesurement.
 
             Console.WriteLine('\t' + "The total calories for this recipe is : " + iTotal_Calories);
+
+            Calory_Category();
 
             Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.WriteLine('\t' + "The steps are: ");

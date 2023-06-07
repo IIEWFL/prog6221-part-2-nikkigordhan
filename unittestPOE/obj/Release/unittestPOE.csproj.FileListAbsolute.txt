@@ -1,0 +1,16 @@
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\unittestPOE\bin\Release\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\unittestPOE\bin\Release\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\unittestPOE\bin\Release\Microsoft.TestPlatform.AdapterUtilities.dll
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\unittestPOE\bin\Release\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\unittestPOE\bin\Release\unittestPOE.dll
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\unittestPOE\bin\Release\unittestPOE.pdb
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\unittestPOE\bin\Release\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\unittestPOE\bin\Release\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\unittestPOE\bin\Release\PROG_PoE_Part_2.exe
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\unittestPOE\bin\Release\PROG_PoE_Part_2.pdb
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\unittestPOE\bin\Release\PROG_PoE_Part_2.exe.config
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\unittestPOE\obj\Release\unittestPOE.csproj.AssemblyReference.cache
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\unittestPOE\obj\Release\unittestPOE.csproj.CoreCompileInputs.cache
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\unittestPOE\obj\Release\unittestPOE.csproj.CopyComplete
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\unittestPOE\obj\Release\unittestPOE.dll
+C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\unittestPOE\obj\Release\unittestPOE.pdb
