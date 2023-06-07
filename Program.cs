@@ -348,7 +348,7 @@ namespace PROG_PoE
             else if (iTotal_Calories >= 201 && iTotal_Calories <= 299)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Total calories is more than 300.Consuming too much of this food can lead to helath problems.");
+                Console.WriteLine("Total calories is less than 300.");
             }
         }
       // method to show an explanation depending on the calory range.
