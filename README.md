@@ -19,12 +19,14 @@
 Step 2: Click on th file that ends with csproj. 
 Step 3: Use Visual Studio IDE to open up the project file. </br>
 The link is below: </br>
-https://github.com/IIEWFL/prog6221-part-1-nikkigordhan/blob/main/PROG_PoE_Part_1/PROG_PoE_Part_2.csproj </p>
+</p>
 	
 <h5> For a regular user: </h5>
 Step 1: Open up the release file. </br>
 Step 2: Use the link to open up the file. </br> 
-https://github.com/IIEWFL/prog6221-part-1-nikkigordhan/blob/Part_1/PROG_PoE_Part_1/bin/Debug/PROG_PoE_Part_1.exe </p>
+ </p>
 
 <h4> Changes made from Part 1: </h4>
-The changes I made from Part 1 for Part 2 is the 
+The changes I made from Part 1 for Part 2 is explained below:
+	1. In Part 1 my scale an ingreident did not work properly.The scaled variable should be equal to the new valu of the ingredeint quantity in the ingredient 	   list.  
+	2. In Part 1 my reset the ingredeint quantity did not work properly. The scaled variable should be equal to the new value of ingreident quanttiy in the 	ingreiedeint list.
