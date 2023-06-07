@@ -25,7 +25,7 @@ https://github.com/IIEWFL/prog6221-part-2-nikkigordhan/blob/main/PROG_PoE_Part_2
 Step 1: Open up the release file. </br>
 Step 2: Use the link to open up the file. </br> 
 The link is below: </br>
- </p>
+https://github.com/IIEWFL/prog6221-part-2-nikkigordhan/blob/main/bin/Release/PROG_PoE_Part_1.exe </p>
 
 <h4> Changes made from Part 1: </h4>
 <p>The changes I made from Part 1 for Part 2 is explained below:</br>
