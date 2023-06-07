@@ -19,7 +19,7 @@
 Step 2: Click on th file that ends with csproj. </br>
 Step 3: Use Visual Studio IDE to open up the project file. </br>
 The link is below: </br>
-</p>
+ C:\Varsity\2023\Semester 1\PROG6221\PoE\Part 2\PROG6221_PoE_Part2_ST10108243_NikkiGordhan </p>
 	
 <h5> For a regular user: </h5>
 Step 1: Open up the release file. </br>
